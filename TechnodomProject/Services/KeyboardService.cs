@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TechnodomProject.Data;
+using TechnodomProject.UI;
 
 namespace TechnodomProject.Services
 {
@@ -9,10 +11,10 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
+        public int ProductChoice { get; set; }
 
         public List<int> List { get; set; }
 
-        public int ProductChoice { get; set; }
 
         public int KeyboardListen()
         {
@@ -41,12 +43,11 @@ namespace TechnodomProject.Services
 
         public void Move(ConsoleKey keyDirection)
         {
-            var goodsData = new GoodsDataAccess();
+            var goodsData = new ItemsDataAccess();
             var webpage = new Webpage();
             var keyboardService = new KeyboardService();
 
             var cursorPosition = Console.CursorTop;
-
 
             switch (keyDirection)
             {
@@ -75,7 +76,7 @@ namespace TechnodomProject.Services
                     {
                         if (cursorPosition == i)
                         {
-                            var products = goodsData.SelectProduct(List[i - 1]); // Id
+                            var products = goodsData.SelectItem(List[i - 1]); // Id
 
                             ProductChoice = List[i - 1];
 
@@ -94,7 +95,7 @@ namespace TechnodomProject.Services
                     }
                     break;
                 case ConsoleKey.Tab:
-                    webpage.DrowBuy(ProductChoice);
+                    webpage.DrawBuy(ProductChoice);
                     break;
                 case ConsoleKey.Escape:
                     webpage.Page();
