@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TechnodomProject.Data;
+using TechnodomProject.Models;
 using TechnodomProject.UI;
 
 namespace TechnodomProject.Services
@@ -11,9 +12,9 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
-        public Guid ProductChoice { get; set; }
+        public Item ProductChoice { get; set; }
 
-        public List<Guid> List { get; set; }
+        public List<Item> List { get; set; }
 
 
         public int KeyboardListen()
@@ -46,6 +47,7 @@ namespace TechnodomProject.Services
             var goodsData = new ItemsDataAccess();
             var webpage = new Webpage();
             var keyboardService = new KeyboardService();
+            var basket = new Basket();
 
             var cursorPosition = Console.CursorTop;
 
@@ -72,6 +74,7 @@ namespace TechnodomProject.Services
                     break;
                 case ConsoleKey.Enter:
                     Console.Clear();
+                    basket.Add(ProductChoice);
                     for (int i = 0; i <= List.Count; i++)
                     {
                         if (cursorPosition == i)
@@ -86,16 +89,16 @@ namespace TechnodomProject.Services
                                 Console.WriteLine($" Цена: {product.Price}");
                                 Console.WriteLine($" Дата публикации: {product.Publicitydate}");
                                 Console.WriteLine($" Рейтинг: {product.Raiting}");
-                                Console.WriteLine($" \n Купить (нажмите Tab): ");
+                                Console.WriteLine($" \n В корзину (нажмите Tab): ");
                                 webpage.Page();
                             }
                         }
                     }
                     break;
-                case ConsoleKey.Tab:
-                    webpage.DrawBuy(ProductChoice);
+                case ConsoleKey.Tab:           //добавление в корзину
+                    basket.Add(ProductChoice);
                     break;
-                case ConsoleKey.Escape:
+                case ConsoleKey.Escape:        //вызов набора страниц
                     webpage.Page();
                     keyboardService.KeyboardListen();
                     break;
@@ -104,6 +107,15 @@ namespace TechnodomProject.Services
                     break;
                 case ConsoleKey.LeftArrow:
                     Console.SetCursorPosition(0, 1);
+                    break;
+                case ConsoleKey.B:
+                    webpage.DrawBasket(basket); //вызов корзины
+                    break;
+                case ConsoleKey.F1:
+                    webpage.DrawBasket(basket); //покупка
+                    break;
+                case ConsoleKey.Delete:
+                    basket.Delete(ProductChoice); //удаление
                     break;
                 default:
                     break;
