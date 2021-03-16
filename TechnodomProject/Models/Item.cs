@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TechnodomProject.Models
 {
@@ -12,7 +11,7 @@ namespace TechnodomProject.Models
 
         public Guid CategoryId { get; set; }
         public Guid ManufacturerId { get; set; }
-         
-        // public ICollection<Comment> Comments { get; set; } - это кажется вообще не нужно
+        public Guid PurchaseId { get; set; }
+        
     }
 }

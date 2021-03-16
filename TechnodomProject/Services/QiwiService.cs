@@ -47,6 +47,8 @@ namespace TechnodomProject.Services
             myProcess.Start();
 
 
+            int timer = 0;
+            int timeForPay = 100000;
             int oneSecond = 1000;
             while (true)
             {
@@ -60,15 +62,21 @@ namespace TechnodomProject.Services
                     status = Status.WAITING.ToString();
                 }
                 Thread.Sleep(oneSecond * 5);
+                timer += oneSecond * 5;
 
                 if (status == Status.PAID.ToString())
                 {
                     return status;
                 }
-                else if (status == "REJECTED")
+                else if (status == Status.REJECTED.ToString())
                 {
                     client.CancelBill(billId: form.BillId);
                     return status;
+                }
+
+                if(timer== timeForPay)
+                {
+                    status = Status.REJECTED.ToString();
                 }
 
 
