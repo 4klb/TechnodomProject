@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TechnodomProject
+namespace TechnodomProject.UI
 {
     class Program
     {
