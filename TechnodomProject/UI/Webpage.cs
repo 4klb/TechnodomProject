@@ -94,6 +94,7 @@ namespace TechnodomProject.UI
         {
             QiwiService qiwiService = new QiwiService();
             qiwiService.Pay();
+
             Console.Clear();
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Страница покупки товара");
