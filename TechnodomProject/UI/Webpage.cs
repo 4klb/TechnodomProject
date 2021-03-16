@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TechnodomProject.Data;
+using TechnodomProject.Models;
+using TechnodomProject.Services;
 
 namespace TechnodomProject.UI
 {
@@ -10,7 +13,7 @@ namespace TechnodomProject.UI
 
         public List<int> DrawPageGoods(int key)
         {
-            var goodsData = new GoodsDataAccess();
+            var goodsData = new ItemsDataAccess();
 
             var keyboard = new Keyboard
             {
@@ -28,7 +31,7 @@ namespace TechnodomProject.UI
                     Console.SetCursorPosition(2, 12);
                     Console.WriteLine($"Текущая страница - {keyboard.PagesArray[i]} из {keyboard.PagesArray.Length}");
 
-                    var products = goodsData.SelectGoods(key);
+                    var products = goodsData.SelectItems(key);
 
                     Console.SetCursorPosition(2, 0);
                     Console.WriteLine("Товары");
@@ -58,8 +61,8 @@ namespace TechnodomProject.UI
 
         public void Menu()
         {
-            KeyboardService keyboardService = new KeyboardService();
-            var goodsData = new GoodsDataAccess();
+            var keyboardService = new KeyboardService();
+            var goodsData = new ItemsDataAccess();
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Стартовая страница");
             Console.SetCursorPosition(1, 1);
@@ -82,12 +85,12 @@ namespace TechnodomProject.UI
             Console.SetCursorPosition(0, 1);
         }
 
-        public ICollection<Comment> DrowComments() //Shift
+        public ICollection<Comment> DrawComments() //Shift
         {
             return null;
         }
 
-        public void DrowBuy(int productChoice) //Tab
+        public void DrawBuy(int productChoice) //Tab
         {
             Console.Clear();
             Console.SetCursorPosition(50, 0);
@@ -95,7 +98,7 @@ namespace TechnodomProject.UI
             Console.SetCursorPosition(2, 4);
             Console.WriteLine($"Ваш выбор {productChoice}");
             Console.WriteLine("Чтобы вернуться к выбору страниц нажмите Escape");
-            Console.SetCursorPosition(2, 6);
+            Console.SetCursorPosition(2, 8);
             Console.WriteLine("Нажмите любую клавишу чтобы перейти к Qiwi-касса");
             Console.ReadKey();
             //оплата, процесс уменьшения товара со склада 
