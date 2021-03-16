@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TechnodomProject.Models;
 
 namespace TechnodomProject.Data
 {
@@ -38,18 +39,14 @@ namespace TechnodomProject.Data
                 {
                     products.Add(new Item
                     {
-                        Id = int.Parse(dataReader["Id"].ToString()),
+                        Id = Guid.Parse(dataReader["Id"].ToString()),
                         Name = dataReader["Name"].ToString(),
-                        Price = dataReader["Price"].ToString(),
-                        Category = dataReader["Category"].ToString(),
-                        Country = dataReader["Country"].ToString(),
+                        Price = int.Parse(dataReader["Price"].ToString()),
+                        Publicitydate = DateTime.Parse(dataReader["Publicitydate"].ToString()),
+                        CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
+                        ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString()),
                         Raiting = int.Parse(dataReader["Raiting"].ToString()),
-                        Comments = new List<Comment>()
-                        //{
-                        //    Id = int.Parse(dataReader["Id"].ToString()),
-                        //    Text = dataReader["Text"].ToString(),
-                        //}
-                    });
+                    }) ;
                 }
 
                 dataReader.Close();
@@ -75,13 +72,13 @@ namespace TechnodomProject.Data
                 {
                     products.Add(new Item
                     {
-                        Id = int.Parse(dataReader["Id"].ToString()),
+                        Id = Guid.Parse(dataReader["Id"].ToString()),
                         Name = dataReader["Name"].ToString(),
-                        Price = dataReader["Price"].ToString(),
-                        Category = dataReader["Category"].ToString(),
-                        Country = dataReader["Country"].ToString(),
+                        Price = int.Parse(dataReader["Price"].ToString()),
+                        Publicitydate = DateTime.Parse(dataReader["Publicitydate"].ToString()),
+                        CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
+                        ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString()),
                         Raiting = int.Parse(dataReader["Raiting"].ToString()),
-                        Comments = new List<Comment>()
                     });
                 }
 
