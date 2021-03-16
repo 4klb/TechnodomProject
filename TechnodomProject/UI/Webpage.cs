@@ -90,8 +90,10 @@ namespace TechnodomProject.UI
             return null;
         }
 
-        public void DrawBuy(int productChoice) //Tab
+        public void DrawBuy(int productChoice) //Tab - покупка
         {
+            QiwiService qiwiService = new QiwiService();
+            qiwiService.Pay();
             Console.Clear();
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Страница покупки товара");
