@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace TechnodomProject
+namespace TechnodomProject.UI
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }
