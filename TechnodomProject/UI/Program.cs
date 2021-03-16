@@ -1,4 +1,5 @@
 ﻿using System;
+using TechnodomProject.Services;
 
 namespace TechnodomProject.UI
 {
@@ -6,7 +7,15 @@ namespace TechnodomProject.UI
     {
         static void Main(string[] args)
         {
-            
+            InitConfiguration();
+
+            Webpage webpage = new Webpage();
+            webpage.Menu();
+        }
+
+        private static void InitConfiguration()
+        {
+            ConfigurationService.Init();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace TechnodomProject.Data
 {
     public class ItemsDataAccess : DbDataAccess<Item>
     {
-        public override void Insert(Item entity) { } //!!
+        public override void Insert(Item entity) {} 
 
         public void Raiting()
         {
@@ -55,7 +55,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public ICollection<Item> SelectItem(int Id)
+        public ICollection<Item> SelectItem(Guid Id)
         {
             string selectSqlScript = $"SELECT * FROM Items WHERE Id = {Id}";
 

@@ -11,9 +11,9 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
-        public int ProductChoice { get; set; }
+        public Guid ProductChoice { get; set; }
 
-        public List<int> List { get; set; }
+        public List<Guid> List { get; set; }
 
 
         public int KeyboardListen()
@@ -84,10 +84,8 @@ namespace TechnodomProject.Services
                             {
                                 Console.WriteLine($" Наименование товара: {product.Name}");
                                 Console.WriteLine($" Цена: {product.Price}");
-                                Console.WriteLine($" Категория: {product.Category}");
-                                Console.WriteLine($" Страна производитель: {product.Country}");
+                                Console.WriteLine($" Дата публикации: {product.Publicitydate}");
                                 Console.WriteLine($" Рейтинг: {product.Raiting}");
-                                Console.WriteLine($" Комментарии: {product.Comments}");
                                 Console.WriteLine($" \n Купить (нажмите Tab): ");
                                 webpage.Page();
                             }
