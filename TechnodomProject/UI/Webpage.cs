@@ -9,9 +9,9 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<int> ListId { get; set; }
+        public List<Guid> ListId { get; set; }
 
-        public List<int> DrawPageGoods(int key)
+        public List<Guid> DrawPageGoods(int key)
         {
             var goodsData = new ItemsDataAccess();
 
@@ -20,7 +20,7 @@ namespace TechnodomProject.UI
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
 
-            ListId = new List<int>();
+            ListId = new List<Guid>();
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -47,7 +47,7 @@ namespace TechnodomProject.UI
 
                     foreach (var id in products)
                     {
-                        var value = id.Id;
+                        Guid value = id.Id;
                         ListId.Add(value);
                     }
                 }
@@ -90,7 +90,7 @@ namespace TechnodomProject.UI
             return null;
         }
 
-        public void DrawBuy(int productChoice) //Tab - покупка
+        public void DrawBuy(Guid productChoice) //Tab - покупка
         {
             QiwiService qiwiService = new QiwiService();
             qiwiService.Pay();
