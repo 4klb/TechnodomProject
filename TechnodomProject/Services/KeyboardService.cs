@@ -85,9 +85,14 @@ namespace TechnodomProject.Services
 
                             foreach (var product in products)
                             {
+                                product.Category = goodsData.GetCategory(product);
+                                product.Manufacturer = goodsData.GetManufacturer(product);
                                 Console.WriteLine($" Наименование товара: {product.Name}");
                                 Console.WriteLine($" Цена: {product.Price}");
                                 Console.WriteLine($" Дата публикации: {product.Publicitydate}");
+                                Console.WriteLine($" Категория: {product.Category.Name}");
+                                Console.WriteLine($" Производитель: {product.Manufacturer.Name}");
+                                Console.WriteLine($" Страна производитель: {product.Manufacturer.Country}");
                                 Console.WriteLine($" Рейтинг: {product.Raiting}");
                                 Console.WriteLine($" \n В корзину (нажмите Tab): ");
                                 webpage.Page();
