@@ -10,9 +10,9 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<Goods> ListId { get; set; }
+        public List<Guid> ListId { get; set; }
 
-        public List<Goods> DrawPageGoods(int key)
+        public List<Guid> DrawPageGoods(int key)
         {
             var goodsData = new ItemsDataAccess();
 
@@ -20,8 +20,6 @@ namespace TechnodomProject.UI
             {
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
-
-            ListId = new List<Goods>();
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -49,7 +47,7 @@ namespace TechnodomProject.UI
                     foreach (var id in products)
                     {
                         Guid value = id.Id;
-                        //ListId.Add(value);//?
+                        ListId.Add(value);
                     }
                 }
                 else

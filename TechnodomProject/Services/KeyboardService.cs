@@ -13,7 +13,7 @@ namespace TechnodomProject.Services
         public int Key { get; set; }
         public Goods ProductChoice { get; set; }
 
-        public List<Goods> List { get; set; }
+        public List<Guid> List { get; set; }
 
 
         public int KeyboardListen()
