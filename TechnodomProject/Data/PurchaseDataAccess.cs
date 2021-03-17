@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
+﻿using System.Data.Common;
 using TechnodomProject.Models;
 
 namespace TechnodomProject.Data
@@ -58,7 +55,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public void UpdateGoodsAmount(Goods goods )
+        public void UpdateGoodsAmount(Goods goods ) // после покупки уменьшаем количество купленного товара
         {
             using (var command = factory.CreateCommand())
             {

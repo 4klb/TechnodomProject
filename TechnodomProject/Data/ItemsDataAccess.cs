@@ -90,12 +90,19 @@ namespace TechnodomProject.Data
 
         public void DeleteItem(Guid productId)
         {
-            var deleteItem = $"DELETE Products WHERE Id = {productId}";
+            var deleteItem = "DELETE Products WHERE Id = @id";
 
             using(var command = factory.CreateCommand())
             {
                 command.CommandText = deleteItem;
                 command.Connection = connection;
+
+                var idParameter = factory.CreateParameter();
+                idParameter.DbType = System.Data.DbType.Guid;
+                idParameter.Value = productId;
+                idParameter.ParameterName = "Id";
+                command.Parameters.Add(idParameter);
+
                 command.ExecuteNonQuery();
             }
         }
