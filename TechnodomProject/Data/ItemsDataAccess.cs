@@ -55,7 +55,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public ICollection<Item> SelectItem(Guid Id)
+        public ICollection<Item> SelectItem(Item Id)
         {
             string selectSqlScript = $"SELECT * FROM Items WHERE Id = {Id}";
 

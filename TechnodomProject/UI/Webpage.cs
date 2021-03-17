@@ -9,9 +9,9 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<Guid> ListId { get; set; }
+        public List<Item> ListId { get; set; }
 
-        public List<Guid> DrawPageGoods(int key)
+        public List<Item> DrawPageGoods(int key)
         {
             var goodsData = new ItemsDataAccess();
 
@@ -20,7 +20,7 @@ namespace TechnodomProject.UI
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
 
-            ListId = new List<Guid>();
+            ListId = new List<Item>();
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -48,7 +48,7 @@ namespace TechnodomProject.UI
                     foreach (var id in products)
                     {
                         Guid value = id.Id;
-                        ListId.Add(value);
+                        ListId.Add(value);//?
                     }
                 }
                 else
@@ -90,22 +90,48 @@ namespace TechnodomProject.UI
             return null;
         }
 
-        public void DrawBuy(Guid productChoice) //Tab - покупка
+        public void DrawPurchase(Item productChoice) //Tab - корзина добавление
         {
-
-            QiwiService qiwiService = new QiwiService();
-            qiwiService.Pay();
-
+            var basket = new Basket();
+            basket.Add(productChoice);
+            
+            
+            //оплата, процесс уменьшения товара со склада 
+        }
+        public void DrawBasket(Basket basket)
+        { 
             Console.Clear();
+
+            foreach(var value in basket.products)
+            {
+                Console.WriteLine(value.Name);
+                Console.WriteLine(value.Price);
+                Console.WriteLine(value.Publicitydate);
+                //
+            }
+            
             Console.SetCursorPosition(50, 0);
-            Console.WriteLine("Страница покупки товара");
+            Console.WriteLine("Корзина");
             Console.SetCursorPosition(2, 4);
-            Console.WriteLine($"Ваш выбор {productChoice}");
             Console.WriteLine("Чтобы вернуться к выбору страниц нажмите Escape");
+            Console.WriteLine("Купить (нажмите Ctrl)");
             Console.SetCursorPosition(2, 8);
             Console.WriteLine("Нажмите любую клавишу чтобы перейти к Qiwi-касса");
             Console.ReadKey();
-            //оплата, процесс уменьшения товара со склада 
+        }
+
+        public void PurchaseItem(Basket purchase)
+        {
+            Console.SetCursorPosition(50, 0);
+            Console.WriteLine("Страница покупки товара");
+
+        }
+
+        public void DeleteItem(Basket purchase)
+        {
+            Console.SetCursorPosition(50, 0);
+            Console.WriteLine("Страница покупки товара");
+
         }
     }
 }
