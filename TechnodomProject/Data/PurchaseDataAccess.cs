@@ -58,21 +58,20 @@ namespace TechnodomProject.Data
             }
         }
 
-        public void UpdateGoodsInPurchases(List<Goods> goods )
+        public void UpdateGoodsInPurchases(Goods goods )
         {
             using (var command = factory.CreateCommand())
             {
-                foreach(var good in goods)
-                {
-                    var idParameter = factory.CreateParameter();
-                    idParameter.DbType = System.Data.DbType.Guid;
-                    idParameter.Value = good.Id;
-                    idParameter.ParameterName = "Id";
-                    command.Parameters.Add(idParameter);
-
-                    command.CommandText = "update AmountGoods set amount = Amount-1 where id = @id";
-                }
                 command.Connection = connection;
+                command.CommandText = "update AmountGoods set amount = Amount-1 where id = @id";
+
+                var idParameter = factory.CreateParameter();
+                idParameter.DbType = System.Data.DbType.Guid;
+                idParameter.Value = goods.Id;
+                idParameter.ParameterName = "Id";
+                command.Parameters.Add(idParameter);
+
+                command.ExecuteNonQuery();
             }
         }
     }

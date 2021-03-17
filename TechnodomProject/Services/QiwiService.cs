@@ -12,7 +12,7 @@ namespace TechnodomProject.Services
 {
     public class QiwiService
     {
-        private string SecretKey { get; set; } = "";
+        private string SecretKey { get; set; } = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6InNkbmNjaC0wMCIsInVzZXJfaWQiOiI3NzAxMzk4OTM5NiIsInNlY3JldCI6ImVjMDc5Y2RlNmYwNTMzZTMyNDM1MzFkMDQ0ZmJhNzM2NTc0ZWI2NWZkNDUzZmUzYWViNTFmMzUzNzI1MjNhNDQifX0=";
 
         public string Pay(User user, Purchase purchase)
         {
