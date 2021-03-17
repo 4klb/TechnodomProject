@@ -114,8 +114,8 @@ namespace TechnodomProject.Services
                 case ConsoleKey.B:
                     webpage.DrawBasket(basket); //вызов корзины
                     break;
-                case ConsoleKey.F1:
-                    webpage.DrawBasket(basket); //покупка
+                case ConsoleKey.Q:
+                    webpage.MakePurchase(basket); //покупка
                     break;
                 case ConsoleKey.Delete:
                     basket.Delete(goodsData.SelectById(ProductChoice)); //удаление
