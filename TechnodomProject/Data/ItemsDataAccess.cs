@@ -122,9 +122,9 @@ namespace TechnodomProject.Data
             }
         }
 
-        public ICollection<Goods> SelectItem(string name)
+        public ICollection<Goods> SelectItem(Guid id)
         {
-            string selectSqlScript = $"SELECT * FROM Items WHERE NAME = {name}";
+            string selectSqlScript = $"SELECT * FROM Items WHERE Id = {id}";
 
             using (var command = factory.CreateCommand())
             {

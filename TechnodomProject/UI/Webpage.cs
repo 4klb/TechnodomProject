@@ -10,10 +10,12 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<string> ListName { get; set; }
+       
 
-        public List<string> DrawPageGoods(int key)
+        public List<Guid> DrawPageGoods(int key)
         {
+            var ListId = new List<Guid>();
+
             var goodsData = new ItemsDataAccess();
 
             var keyboard = new Keyboard
@@ -46,8 +48,8 @@ namespace TechnodomProject.UI
 
                     foreach (var id in products)
                     {
-                        string value = id.Name;
-                        ListName.Add(value);
+                        //Guid value = id.Id;
+                        ListId.Add(id.Id);
                     }
                 }
                 else
@@ -55,7 +57,7 @@ namespace TechnodomProject.UI
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            return ListName;
+            return ListId;
         }
 
 

@@ -11,9 +11,9 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
-        public string ProductChoice { get; set; }
+        public Guid ProductChoice { get; set; }
 
-        public List<string> List { get; set; }
+        public List<Guid> List { get; set; }
 
 
         public int KeyboardListen()
@@ -95,7 +95,7 @@ namespace TechnodomProject.Services
                     }
                     break;
                 case ConsoleKey.Tab:           //добавление в корзину
-                    basket.Add(ProductChoice);
+                    //basket.Add(ProductChoice);
                     break;
                 case ConsoleKey.Escape:        //вызов набора страниц
                     webpage.Page();
@@ -114,7 +114,7 @@ namespace TechnodomProject.Services
                     webpage.DrawBasket(basket); //покупка
                     break;
                 case ConsoleKey.Delete:
-                    basket.Delete(ProductChoice); //удаление
+                    //basket.Delete(ProductChoice); //удаление
                     break;
                 default:
                     break;
