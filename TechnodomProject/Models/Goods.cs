@@ -11,7 +11,6 @@ namespace TechnodomProject.Models
 
         public Guid CategoryId { get; set; }
         public Guid ManufacturerId { get; set; }
-        public Guid PurchaseId { get; set; }
         
     }
 }

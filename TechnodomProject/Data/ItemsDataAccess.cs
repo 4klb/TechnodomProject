@@ -76,6 +76,7 @@ namespace TechnodomProject.Data
                         Name = dataReader["Name"].ToString(),
                         Price = int.Parse(dataReader["Price"].ToString()),
                         Publicitydate = DateTime.Parse(dataReader["Publicitydate"].ToString()),
+
                         CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
                         ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString()),
                         Raiting = int.Parse(dataReader["Raiting"].ToString()),
