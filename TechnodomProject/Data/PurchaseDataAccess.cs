@@ -58,7 +58,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public void UpdateGoodsInPurchases(Goods goods )
+        public void UpdateGoodsAmount(Goods goods )
         {
             using (var command = factory.CreateCommand())
             {

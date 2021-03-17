@@ -169,7 +169,7 @@ namespace TechnodomProject.UI
                     purchaseDataAccess.Insert(purchase);
                     foreach(var goods in purchase.products)
                     {
-                        purchaseDataAccess.UpdateGoodsInPurchases(goods); // уменьшаем количество проданных продуктов
+                        purchaseDataAccess.UpdateGoodsAmount(goods); // уменьшаем количество проданных продуктов
                     }
                     Console.WriteLine("Покупка успешна завершена");
                 }
