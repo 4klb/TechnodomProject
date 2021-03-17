@@ -172,14 +172,41 @@ namespace TechnodomProject.UI
                         purchaseDataAccess.UpdateGoodsAmount(goods); // уменьшаем количество проданных продуктов
                     }
                     Console.WriteLine("Покупка успешна завершена");
+                    Console.WriteLine("Хотите ли вы оставить отзыв? Введите Y - если да, N - если нет");
+                    var inputAnswer = Console.ReadLine();
+                    switch (inputAnswer.ToLower())
+                    {
+                        case "y":
+                            foreach(var goods in purchase.products)
+                            {
+                                LeaveComment(goods, user);
+                            }
+                            break;
+                        case "n":
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 else 
                 {
                     Console.WriteLine("Произошла ошибка");
                 }
             }
+        }
 
+
+        public void LeaveComment(Goods goods, User user)
+        {
+            Console.WriteLine($"Введите комментарий для {goods.Category.Name} {goods.Name}");
+            var comment = new Comment();
+            comment.Text = Console.ReadLine();
+            comment.Date = DateTime.Now;
+            comment.UserId = user.Id;
+            comment.GoodId = goods.Id;
+            Console.WriteLine($"Введите рейтинг данного товара от 0 до 10");
 
         }
+
     }
 }
