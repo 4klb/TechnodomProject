@@ -110,7 +110,7 @@ namespace TechnodomProject.Services
                     webpage.DrawBasket(basket); //вызов корзины
                     break;
                 case ConsoleKey.F1:
-                    webpage.DrawBasket(basket); //покупка
+                    webpage.MakePurchase(basket); //покупка
                     break;
                 case ConsoleKey.Delete:
                     basket.Delete(goodsData.SelectById(ProductChoice)); //удаление

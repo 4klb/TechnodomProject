@@ -139,6 +139,8 @@ namespace TechnodomProject.UI
         {
             Console.Clear();
             Console.WriteLine("Добавленно в корзину");
+            Console.WriteLine("Вернуться к выбору страниц(нажмите <-/->)");
+            Console.WriteLine("Совершить покупку (нажмите F1)");
         }
 
 
