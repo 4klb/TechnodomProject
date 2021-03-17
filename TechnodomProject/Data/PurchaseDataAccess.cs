@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
+﻿using System.Data.Common;
 using TechnodomProject.Models;
 
 namespace TechnodomProject.Data
@@ -58,12 +55,12 @@ namespace TechnodomProject.Data
             }
         }
 
-        public void UpdateGoodsInPurchases(Goods goods )
+        public void UpdateGoodsAmount(Goods goods ) // после покупки уменьшаем количество купленного товара
         {
             using (var command = factory.CreateCommand())
             {
                 command.Connection = connection;
-                command.CommandText = "update AmountGoods set amount = Amount-1 where id = @id";
+                command.CommandText = "update AmountGoods set Amount = Amount-1 where goodsId = @Id";
 
                 var idParameter = factory.CreateParameter();
                 idParameter.DbType = System.Data.DbType.Guid;
