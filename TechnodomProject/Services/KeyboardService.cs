@@ -94,8 +94,8 @@ namespace TechnodomProject.Services
                         }
                     }
                     break;
-                case ConsoleKey.Tab:           //добавление в корзину
-                    //basket.Add(ProductChoice);
+                case ConsoleKey.Tab:           //добавление в корзину                  
+                    basket.Add(goodsData.SelectById(ProductChoice));
                     break;
                 case ConsoleKey.Escape:        //вызов набора страниц
                     webpage.Page();
@@ -114,7 +114,7 @@ namespace TechnodomProject.Services
                     webpage.DrawBasket(basket); //покупка
                     break;
                 case ConsoleKey.Delete:
-                    //basket.Delete(ProductChoice); //удаление
+                    basket.Delete(goodsData.SelectById(ProductChoice)); //удаление
                     break;
                 default:
                     break;

@@ -8,6 +8,7 @@ namespace TechnodomProject.Services
     public class Basket
     {
         public List<Goods> products = new List<Goods>();
+
         public void Add(Goods productChoice) 
         {
             products = new List<Goods>();

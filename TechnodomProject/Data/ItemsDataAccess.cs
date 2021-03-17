@@ -173,5 +173,38 @@ namespace TechnodomProject.Data
                 command.ExecuteNonQuery();
             }
         }
+
+        public Goods SelectById(Guid Id)
+        {
+            var sqlScript = "Select * Goods WHERE Id = @id";
+
+            using (var command = factory.CreateCommand())
+            {
+                command.CommandText = sqlScript;
+                command.Connection = connection;
+
+                var goods = new Goods();
+
+                var dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    goods = new Goods
+                    {
+                        Id = Guid.Parse(dataReader["Id"].ToString()),
+                        Name = dataReader["Name"].ToString(),
+                        Price = int.Parse(dataReader["Price"].ToString()),
+                        Publicitydate = DateTime.Parse(dataReader["Publicitydate"].ToString()),
+
+                        CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
+                        ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString())
+                    };
+                }
+
+                dataReader.Close();
+
+                return goods;
+            }
+        }
     }
 }
