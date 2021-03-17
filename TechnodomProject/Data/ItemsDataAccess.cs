@@ -206,5 +206,63 @@ namespace TechnodomProject.Data
                 return goods;
             }
         }
+
+        public Category GetCategory(Goods goods)
+        {
+            string selectSqlScript = $"SELECT * FROM Category where Id='{goods.CategoryId}'";
+
+            var category = new Category();
+
+            using (var command = factory.CreateCommand())
+            {
+                command.CommandText = selectSqlScript;
+                command.Connection = connection;
+
+                using (var dataReader = command.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        category = new Category
+                        {
+                            Id = Guid.Parse(dataReader["Id"].ToString()),
+                            Name = dataReader["Name"].ToString()
+
+                        };
+                    }
+                }
+
+                return category;
+            }
+        }
+
+
+        public Manufacturer GetManufacturer(Goods goods)
+        {
+            string selectSqlScript = $"SELECT * FROM Manufacturer where Id='{goods.ManufacturerId}'";
+
+            var manufacturer = new Manufacturer();
+
+            using (var command = factory.CreateCommand())
+            {
+                command.CommandText = selectSqlScript;
+                command.Connection = connection;
+
+                using (var dataReader = command.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        manufacturer = new Manufacturer
+                        {
+                            Id = Guid.Parse(dataReader["Id"].ToString()),
+                            Name = dataReader["Name"].ToString(),
+                            Country = dataReader["Country"].ToString(),
+
+                        };
+                    }
+                }
+
+                return manufacturer;
+            }
+        }
     }
 }

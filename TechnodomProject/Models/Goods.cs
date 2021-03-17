@@ -12,6 +12,9 @@ namespace TechnodomProject.Models
 
         public Guid CategoryId { get; set; }
         public Guid ManufacturerId { get; set; }
+
+        public Category Category { get; set; }
+        public Manufacturer Manufacturer { get; set; }
         
     }
 }
