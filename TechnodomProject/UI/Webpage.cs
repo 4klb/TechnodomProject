@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TechnodomProject.Data;
+using TechnodomProject.Enum;
 using TechnodomProject.Models;
 using TechnodomProject.Services;
 
@@ -48,7 +49,7 @@ namespace TechnodomProject.UI
                     foreach (var id in products)
                     {
                         Guid value = id.Id;
-                        ListId.Add(value);//?
+                        //ListId.Add(value);//?
                     }
                 }
                 else
@@ -58,6 +59,7 @@ namespace TechnodomProject.UI
             }
             return ListId;
         }
+
 
         public void Menu()
         {
@@ -71,6 +73,7 @@ namespace TechnodomProject.UI
             keyboardService.KeyboardListen();
             Console.Clear();
         }
+
 
         public void Page()
         {
@@ -90,14 +93,9 @@ namespace TechnodomProject.UI
             return null;
         }
 
-        public void DrawPurchase(Item productChoice) //Tab - корзина добавление
-        {
-            var basket = new Basket();
-            basket.Add(productChoice);
-            
-            
-            //оплата, процесс уменьшения товара со склада 
-        }
+ 
+
+
         public void DrawBasket(Basket basket)
         { 
             Console.Clear();
@@ -107,7 +105,6 @@ namespace TechnodomProject.UI
                 Console.WriteLine(value.Name);
                 Console.WriteLine(value.Price);
                 Console.WriteLine(value.Publicitydate);
-                //
             }
             
             Console.SetCursorPosition(50, 0);
@@ -120,6 +117,8 @@ namespace TechnodomProject.UI
             Console.ReadKey();
         }
 
+
+
         public void PurchaseItem(Basket purchase)
         {
             Console.SetCursorPosition(50, 0);
@@ -131,6 +130,54 @@ namespace TechnodomProject.UI
         {
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Страница покупки товара");
+
+        }
+
+
+
+
+
+
+
+
+
+        public void MakePurchase(Basket basket) // совершить покупку
+        {
+            var user = new User();
+            using (var userDataAccess = new UserDataAccess())
+            {
+                user = userDataAccess.SelectByPhone(user.Phone); // получаю поьзователя по телефону
+            }
+
+            var purchase = new Purchase(); //создается покупка
+
+            purchase.products = basket.products; // добавляем продукты
+            foreach (var product in purchase.products)
+            {
+                purchase.Sum += product.Price; // добавляем цену
+            }
+            purchase.Date = DateTime.Now; // добавляем время совершения покупки
+            purchase.UserId = user.Id; // добавляем пользователи который совершил покупку
+
+            var qiwiService = new QiwiService();
+            var result = qiwiService.Pay(user, purchase); // платим за покупку
+            
+            using(var itemsDataAccess = new ItemsDataAccess())
+            {
+                if (result == Status.PAID.ToString()) //если покупка была успешной удаляем купленные продукты
+                {
+                    foreach(var product in purchase.products)
+                    {
+                        itemsDataAccess.DeleteItem(product.Id);
+                    }
+                    Console.WriteLine("Покупка успешна завершена");
+                }
+                else 
+                {
+                    Console.WriteLine("Произошла ошибка");
+                }
+            }
+
 
         }
     }

@@ -87,5 +87,17 @@ namespace TechnodomProject.Data
                 return products;
             }
         }
+
+        public void DeleteItem(Guid productId)
+        {
+            var deleteItem = $"DELETE Products WHERE Id = {productId}";
+
+            using(var command = factory.CreateCommand())
+            {
+                command.CommandText = deleteItem;
+                command.Connection = connection;
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

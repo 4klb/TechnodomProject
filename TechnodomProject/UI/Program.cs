@@ -9,8 +9,10 @@ namespace TechnodomProject.UI
         {
             InitConfiguration();
 
-            Webpage webpage = new Webpage();
-            webpage.Menu();
+            var menuUi = new MenuUI();
+            menuUi.Start();
+
+
         }
 
         private static void InitConfiguration()
