@@ -58,8 +58,6 @@ namespace TechnodomProject.Data
             }
         }
 
-
-
         public bool IsPhoneExists(string phone)
         {
             string selectSqlScript = "SELECT Phone FROM Users";
@@ -84,8 +82,6 @@ namespace TechnodomProject.Data
             }
 
         }
-
-
 
         public User SelectByPhone(string phone)
         {
