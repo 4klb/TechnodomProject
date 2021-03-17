@@ -17,7 +17,7 @@ namespace TechnodomProject.UI
             //webpage.StartPage();
 
             var itemsDataAccess = new ItemsDataAccess();
-            var items = itemsDataAccess.Raiting();
+            var items = itemsDataAccess.SelectRaiting();
             foreach(var item in items)
             {
                 Console.WriteLine(item);
