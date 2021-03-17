@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TechnodomProject.Models
 {
@@ -7,6 +8,8 @@ namespace TechnodomProject.Models
         public string Name { get; set; }
         public int Price { get; set; }
         public DateTime Publicitydate { get; set; }
+
+        public List<int> RaitingMarks { get; set; }
         public int Raiting { get; set; }
 
         public Guid CategoryId { get; set; }

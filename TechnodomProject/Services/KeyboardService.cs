@@ -73,7 +73,7 @@ namespace TechnodomProject.Services
                     break;
                 case ConsoleKey.Enter:
                     Console.Clear();
-                    basket.Add(ProductChoice);
+                    //basket.Add(ProductChoice); - думаю это стоит удалить
                     for (int i = 0; i <= List.Count; i++)
                     {
                         if (cursorPosition == i)
