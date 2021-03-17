@@ -7,10 +7,43 @@ namespace TechnodomProject.Data
 {
     public class ItemsDataAccess : DbDataAccess<Goods>
     {
-        public override void Insert(Goods entity) {} 
+        public override void Insert(Goods entity) {}
 
-        public void Raiting()
+        public void SetRaiting()
         {
+
+        }
+        public ICollection<Goods> SelectRaiting()
+        {
+            string selectSqlScript = $"SELECT NAME FROM GOODS ORDER BY Raiting"; ;
+
+            using (var command = factory.CreateCommand())
+            {
+                command.CommandText = selectSqlScript;
+                command.Connection = connection;
+
+                var dataReader = command.ExecuteReader();
+
+                var products = new List<Goods>();
+
+                while (dataReader.Read())
+                {
+                    products.Add(new Goods
+                    {
+                        Id = Guid.Parse(dataReader["Id"].ToString()),
+                        Name = dataReader["Name"].ToString(),
+                        Price = int.Parse(dataReader["Price"].ToString()),
+                        Publicitydate = DateTime.Parse(dataReader["Publicitydate"].ToString()),
+                        CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
+                        ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString()),
+                        Raiting = int.Parse(dataReader["Raiting"].ToString()),
+                    });
+                }
+
+                dataReader.Close();
+
+                return products;
+            }
 
         }
         public ICollection<Goods> SelectItems(int data)

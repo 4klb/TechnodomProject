@@ -167,7 +167,7 @@ namespace TechnodomProject.UI
             {
                 if (result == Status.PAID.ToString()) //если покупка была успешной удаляем купленные продукты
                 {
-                    purchaseDataAccess.Insert(purchase); // добавляем покупку
+                    purchaseDataAccess.Insert(purchase);
                     foreach(var goods in purchase.products)
                     {
                         purchaseDataAccess.UpdateGoodsAmount(goods); // уменьшаем количество проданных продуктов
@@ -180,7 +180,7 @@ namespace TechnodomProject.UI
                         case "y":
                             foreach(var goods in purchase.products)
                             {
-                                GiveFeedback(goods, user);
+                                LeaveComment(goods, user);
                             }
                             break;
                         case "n":
@@ -197,15 +197,18 @@ namespace TechnodomProject.UI
         }
 
 
-        public void GiveFeedback(Goods goods, User user)
+        public void LeaveComment(Goods goods, User user)
         {
-            Console.WriteLine($"Введите комментарий для {goods.Name} {goods.Name}");
+            string mark = string.Empty;
+            //Console.WriteLine($"Введите комментарий для {goods.Category.Name} {goods.Name}");
             var comment = new Comment();
             comment.Text = Console.ReadLine();
             comment.Date = DateTime.Now;
             comment.UserId = user.Id;
             comment.GoodId = goods.Id;
             Console.WriteLine($"Введите рейтинг данного товара от 0 до 10");
+            mark = Console.ReadLine();
+            int.TryParse(mark, out var value);
 
         }
 
