@@ -16,12 +16,12 @@ namespace TechnodomProject.UI
             //регистрация 
             webpage.StartPage();
 
-            //var itemsDataAccess = new ItemsDataAccess();
-            //var items = itemsDataAccess.SelectRaiting();
-            //foreach (var item in items)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            var itemsDataAccess = new ItemsDataAccess();
+            var items = itemsDataAccess.SelectRaiting();
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
 
 
         }
