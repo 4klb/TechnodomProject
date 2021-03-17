@@ -13,8 +13,8 @@ namespace TechnodomProject.UI
             InitConfiguration();
             var webpage = new Webpage();
 
-            //регистрация 
-            webpage.StartPage();
+            //тут регистрация 
+            //webpage.StartPage();
 
             //var itemsDataAccess = new ItemsDataAccess();
             //var items = itemsDataAccess.SelectRaiting();
@@ -22,7 +22,7 @@ namespace TechnodomProject.UI
             //{
             //    Console.WriteLine(item);
             //}
-            
+
 
         }
 

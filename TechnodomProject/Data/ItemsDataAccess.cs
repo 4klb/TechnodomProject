@@ -174,7 +174,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public Goods SelectById(Guid id)
+        public ICollection<Goods> SelectById(Guid id)
         {
             var sqlScript = $"Select * from Goods WHERE Id = '{id}'";
            
@@ -183,13 +183,13 @@ namespace TechnodomProject.Data
                 command.CommandText = sqlScript;
                 command.Connection = connection;
 
-                var goods = new Goods();
+                var goods = new List<Goods>();
 
                 var dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    goods = new Goods
+                    goods.Add(new Goods
                     {
                         Id = Guid.Parse(dataReader["Id"].ToString()),
                         Name = dataReader["Name"].ToString(),
@@ -198,7 +198,7 @@ namespace TechnodomProject.Data
 
                         CategoryId = Guid.Parse(dataReader["CategoryId"].ToString()),
                         ManufacturerId = Guid.Parse(dataReader["ManufacturerId"].ToString())
-                    };
+                    });
                 }
 
                 dataReader.Close();

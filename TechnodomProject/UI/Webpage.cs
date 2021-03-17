@@ -48,7 +48,6 @@ namespace TechnodomProject.UI
 
                     foreach (var id in products)
                     {
-                        //Guid value = id.Id;
                         ListId.Add(id.Id);
                     }
                 }
@@ -94,24 +93,25 @@ namespace TechnodomProject.UI
             return null;
         }
 
- 
-
-
-        public void DrawBasket(List<Goods> basketList)
+        public void DrawBasket(List<string> basketList) //нужно узнать почему лист перезаписывается  
         { 
             Console.Clear();
-
-            foreach(var value in basketList)
-            {
-                Console.WriteLine(value.Name);
-            }
-            
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Корзина");
             Console.SetCursorPosition(2, 4);
+            Console.WriteLine("Добавлен(-ы) продукт(-ы)");
+            foreach (var value in basketList)
+            {
+                Console.SetCursorPosition(2, 5);
+                Console.WriteLine(value);
+            }
+            Console.SetCursorPosition(60, 7);
             Console.WriteLine("Чтобы вернуться к выбору страниц нажмите Escape");
-            Console.WriteLine("Купить (нажмите Ctrl)");
-            Console.SetCursorPosition(2, 8);
+            Console.SetCursorPosition(60, 10);
+            Console.WriteLine("Показать корзину (нажмите B)");
+            Console.SetCursorPosition(60, 10);
+            Console.WriteLine("Купить (нажмите Q)");
+            Console.SetCursorPosition(60, 10);
             Console.WriteLine("Нажмите любую клавишу чтобы перейти к Qiwi-касса");
             Console.ReadKey();
         }
