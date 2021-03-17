@@ -15,7 +15,7 @@ namespace TechnodomProject.Services
 
         public List<Guid> List { get; set; }
 
-        public List<string> BasketList { get; set; }
+        public List<Guid> BasketList { get; set; }
         public int KeyboardListen()
         {
             string status = string.Empty;

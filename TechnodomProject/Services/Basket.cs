@@ -11,12 +11,12 @@ namespace TechnodomProject.Services
     {
         public ICollection<Goods> products;
 
-        public List<string> Add(Guid productChoice)  //корзина каждый раз записывает новые значения и SelectRaiting() не работает !
+        public List<Guid> Add(Guid productChoice)  //корзина каждый раз записывает новые значения и SelectRaiting() не работает !
         {
             var dataAccess = new ItemsDataAccess();
             var webpage = new Webpage();
             
-            var list = new List<string>();
+            var list = new List<Guid>();
 
             webpage.DrawAddToBasket();
 
@@ -24,7 +24,7 @@ namespace TechnodomProject.Services
 
             foreach(var value in result)
             {
-                list.Add(value.Name);
+                list.Add(value.Id);
             }
 
             return list;

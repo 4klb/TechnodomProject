@@ -14,7 +14,7 @@ namespace TechnodomProject.UI
             var webpage = new Webpage();
 
             //тут регистрация 
-            //webpage.StartPage();
+            webpage.StartPage();
 
             //var itemsDataAccess = new ItemsDataAccess();
             //var items = itemsDataAccess.SelectRaiting();

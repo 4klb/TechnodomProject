@@ -93,18 +93,26 @@ namespace TechnodomProject.UI
             return null;
         }
 
-        public void DrawBasket(List<string> basketList) //нужно узнать почему лист перезаписывается  
+        public void DrawBasket(List<Guid> basketList) //нужно узнать почему лист перезаписывается  
         { 
             Console.Clear();
+            var itemData = new ItemsDataAccess();
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Корзина");
             Console.SetCursorPosition(2, 4);
             Console.WriteLine("Добавлен(-ы) продукт(-ы)");
-            foreach (var value in basketList)
+
+            foreach(var value in basketList)
             {
-                Console.SetCursorPosition(2, 5);
-                Console.WriteLine(value);
+                var result = itemData.SelectById(value);
+
+                foreach (var items in result)
+                {
+                    Console.SetCursorPosition(2, 5);
+                    Console.WriteLine(items.Name);
+                }
             }
+             
             Console.SetCursorPosition(60, 7);
             Console.WriteLine("Чтобы вернуться к выбору страниц нажмите Escape");
             Console.SetCursorPosition(60, 10);
@@ -136,8 +144,8 @@ namespace TechnodomProject.UI
         public void DrawAddToBasket()
         {
             Console.Clear();
-            Console.WriteLine("Добавленно в корзину");
-            Console.WriteLine("Вернуться к выбору страниц(нажмите <-/->)");
+            Console.WriteLine("Добавлено в корзину");
+            Console.WriteLine("Вернуться к выбору страниц(нажмите Escape)");
             Console.WriteLine("Совершить покупку (нажмите Q)");
         }
 
