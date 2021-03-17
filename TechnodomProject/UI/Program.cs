@@ -11,7 +11,10 @@ namespace TechnodomProject.UI
         static void Main(string[] args)
         {
             InitConfiguration();
+            var webpage = new Webpage();
 
+            //регистрация 
+            webpage.StartPage();
         }
 
         private static void InitConfiguration()
