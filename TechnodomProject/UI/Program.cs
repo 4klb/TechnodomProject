@@ -14,7 +14,14 @@ namespace TechnodomProject.UI
             var webpage = new Webpage();
 
             //регистрация 
-            webpage.StartPage();
+            //webpage.StartPage();
+
+            var itemsDataAccess = new ItemsDataAccess();
+            var items = itemsDataAccess.Raiting();
+            foreach(var item in items)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private static void InitConfiguration()
