@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TechnodomProject.Models;
+using TechnodomProject.UI;
 
 namespace TechnodomProject.Services
 {
@@ -11,8 +12,10 @@ namespace TechnodomProject.Services
 
         public void Add(Goods productChoice) 
         {
+            var webpage = new Webpage();
             products = new List<Goods>();
             products.Add(productChoice);
+            webpage.DrawAddToBasket();
         }
         public void Delete(Goods product) 
         {

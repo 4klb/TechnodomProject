@@ -174,10 +174,10 @@ namespace TechnodomProject.Data
             }
         }
 
-        public Goods SelectById(Guid Id)
+        public Goods SelectById(Guid id)
         {
-            var sqlScript = "Select * Goods WHERE Id = @id";
-
+            var sqlScript = $"Select * from Goods WHERE Id = '{id}'";
+           
             using (var command = factory.CreateCommand())
             {
                 command.CommandText = sqlScript;

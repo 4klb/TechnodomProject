@@ -135,11 +135,11 @@ namespace TechnodomProject.UI
         }
 
 
-
-
-
-
-
+        public void DrawAddToBasket()
+        {
+            Console.Clear();
+            Console.WriteLine("Добавленно в корзину");
+        }
 
 
         public void MakePurchase(Basket basket) // совершить покупку F1

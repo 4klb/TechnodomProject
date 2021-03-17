@@ -73,7 +73,6 @@ namespace TechnodomProject.Services
                     break;
                 case ConsoleKey.Enter:
                     Console.Clear();
-                    //basket.Add(ProductChoice);
                     for (int i = 0; i <= List.Count; i++)
                     {
                         if (cursorPosition == i)
