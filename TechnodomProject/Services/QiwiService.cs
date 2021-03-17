@@ -63,7 +63,6 @@ namespace TechnodomProject.Services
                 }
                 Thread.Sleep(oneSecond * 5);
                 timer += oneSecond * 5;
-
                 if (status == Status.PAID.ToString())
                 {
                     return status;
@@ -73,13 +72,10 @@ namespace TechnodomProject.Services
                     client.CancelBill(billId: form.BillId);
                     return status;
                 }
-
                 if(timer== timeForPay)
                 {
                     status = Status.REJECTED.ToString();
                 }
-
-
             }
         }
     }

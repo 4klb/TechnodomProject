@@ -92,6 +92,7 @@ namespace TechnodomProject.UI
 
         public void DrawBuy(Guid productChoice) //Tab - покупка
         {
+
             QiwiService qiwiService = new QiwiService();
             qiwiService.Pay();
 
