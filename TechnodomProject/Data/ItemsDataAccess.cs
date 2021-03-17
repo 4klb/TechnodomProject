@@ -124,7 +124,7 @@ namespace TechnodomProject.Data
 
         public ICollection<Goods> SelectItem(Guid id)
         {
-            string selectSqlScript = $"SELECT * FROM Items WHERE Id = {id}";
+            string selectSqlScript = $"SELECT * FROM Goods WHERE Id = {id}";
 
             using (var command = factory.CreateCommand())
             {
@@ -157,7 +157,7 @@ namespace TechnodomProject.Data
 
         public void DeleteItem(Guid productId)
         {
-            var deleteItem = "DELETE Products WHERE Id = @id";
+            var deleteItem = "DELETE Goods WHERE Id = @id";
 
             using(var command = factory.CreateCommand())
             {
@@ -206,5 +206,10 @@ namespace TechnodomProject.Data
                 return goods;
             }
         }
+
+        /*public ICollection<Comment> GetComments(GoodsId Id)
+        {
+
+        }*/
     }
 }
