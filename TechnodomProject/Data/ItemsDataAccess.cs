@@ -124,7 +124,7 @@ namespace TechnodomProject.Data
 
         public ICollection<Goods> SelectItem(Guid id)
         {
-            string selectSqlScript = $"SELECT * FROM Items WHERE Id = {id}";
+            string selectSqlScript = $"SELECT * FROM Goods WHERE Id = '{id}'";
 
             using (var command = factory.CreateCommand())
             {
