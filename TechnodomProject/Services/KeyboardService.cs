@@ -11,9 +11,9 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
-        public Goods ProductChoice { get; set; }
+        public string ProductChoice { get; set; }
 
-        public List<Guid> List { get; set; }
+        public List<string> List { get; set; }
 
 
         public int KeyboardListen()
@@ -73,7 +73,7 @@ namespace TechnodomProject.Services
                     break;
                 case ConsoleKey.Enter:
                     Console.Clear();
-                    //basket.Add(ProductChoice); - думаю это стоит удалить
+                    //basket.Add(ProductChoice);
                     for (int i = 0; i <= List.Count; i++)
                     {
                         if (cursorPosition == i)

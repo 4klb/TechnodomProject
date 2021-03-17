@@ -10,9 +10,9 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<Guid> ListId { get; set; }
+        public List<string> ListName { get; set; }
 
-        public List<Guid> DrawPageGoods(int key)
+        public List<string> DrawPageGoods(int key)
         {
             var goodsData = new ItemsDataAccess();
 
@@ -20,6 +20,8 @@ namespace TechnodomProject.UI
             {
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
+
+            var products = goodsData.SelectItems(key); ;
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -30,11 +32,9 @@ namespace TechnodomProject.UI
                     Console.SetCursorPosition(2, 12);
                     Console.WriteLine($"Текущая страница - {keyboard.PagesArray[i]} из {keyboard.PagesArray.Length}");
 
-                    var products = goodsData.SelectItems(key);
-
+           
                     Console.SetCursorPosition(2, 0);
                     Console.WriteLine("Товары");
-
 
                     foreach (var product in products)
                     {
@@ -46,8 +46,8 @@ namespace TechnodomProject.UI
 
                     foreach (var id in products)
                     {
-                        Guid value = id.Id;
-                        ListId.Add(value);
+                        string value = id.Name;
+                        ListName.Add(value);
                     }
                 }
                 else
@@ -55,7 +55,7 @@ namespace TechnodomProject.UI
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            return ListId;
+            return ListName;
         }
 
 
@@ -197,7 +197,9 @@ namespace TechnodomProject.UI
 
         public void LeaveComment(Goods goods, User user)
         {
+            var itemData = new ItemsDataAccess();
             string mark = string.Empty;
+
             //Console.WriteLine($"Введите комментарий для {goods.Category.Name} {goods.Name}");
             var comment = new Comment();
             comment.Text = Console.ReadLine();
@@ -206,8 +208,10 @@ namespace TechnodomProject.UI
             comment.GoodId = goods.Id;
             Console.WriteLine($"Введите рейтинг данного товара от 0 до 10");
             mark = Console.ReadLine();
-            int.TryParse(mark, out var value);
 
+            int.TryParse(mark, out var value);
+            itemData.SetRaiting(goods.Id, value);
+           
         }
 
     }
