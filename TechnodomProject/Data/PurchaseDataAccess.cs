@@ -63,7 +63,7 @@ namespace TechnodomProject.Data
             using (var command = factory.CreateCommand())
             {
                 command.Connection = connection;
-                command.CommandText = "update AmountGoods set amount = Amount-1 where id = @id";
+                command.CommandText = "update AmountGoods set Amount = Amount-1 where goodsId = @Id";
 
                 var idParameter = factory.CreateParameter();
                 idParameter.DbType = System.Data.DbType.Guid;

@@ -166,8 +166,11 @@ namespace TechnodomProject.UI
             {
                 if (result == Status.PAID.ToString()) //если покупка была успешной удаляем купленные продукты
                 {
-                    purchaseDataAccess.Insert(purchase);                   
-                    
+                    purchaseDataAccess.Insert(purchase);
+                    foreach(var goods in purchase.products)
+                    {
+                        purchaseDataAccess.UpdateGoodsInPurchases(goods); // уменьшаем количество проданных продуктов
+                    }
                     Console.WriteLine("Покупка успешна завершена");
                 }
                 else 
