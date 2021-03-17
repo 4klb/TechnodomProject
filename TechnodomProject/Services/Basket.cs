@@ -10,12 +10,18 @@ namespace TechnodomProject.Services
     {
         public List<Goods> products = new List<Goods>();
 
-        public void Add(Goods productChoice) 
+        public List<string> Add(Goods productChoice) 
         {
             var webpage = new Webpage();
             products = new List<Goods>();
+            var list = new List<string>();
             products.Add(productChoice);
             webpage.DrawAddToBasket();
+            foreach(var i in products)
+            {
+                list = i;
+            }
+            return list;
         }
         public void Delete(Goods product) 
         {

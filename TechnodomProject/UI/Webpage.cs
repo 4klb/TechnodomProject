@@ -97,15 +97,13 @@ namespace TechnodomProject.UI
  
 
 
-        public void DrawBasket(Basket basket)
+        public void DrawBasket(List<Goods> basketList)
         { 
             Console.Clear();
 
-            foreach(var value in basket.products)
+            foreach(var value in basketList)
             {
                 Console.WriteLine(value.Name);
-                Console.WriteLine(value.Price);
-                Console.WriteLine(value.Publicitydate);
             }
             
             Console.SetCursorPosition(50, 0);

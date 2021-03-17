@@ -50,6 +50,8 @@ namespace TechnodomProject.Services
 
             var cursorPosition = Console.CursorTop;
 
+            var basketList = new List<string>();
+
             switch (keyDirection)
             {
                 case ConsoleKey.UpArrow:
@@ -94,7 +96,11 @@ namespace TechnodomProject.Services
                     }
                     break;
                 case ConsoleKey.Tab:           //добавление в корзину                  
-                    basket.Add(goodsData.SelectById(ProductChoice));
+                    basketList = basket.Add(goodsData.SelectById(ProductChoice));
+                    foreach(var y in basketList)
+                    {
+                        Console.WriteLine(y);
+                    }
                     break;
                 case ConsoleKey.Escape:        //вызов набора страниц
                     webpage.Page();
@@ -107,7 +113,7 @@ namespace TechnodomProject.Services
                     Console.SetCursorPosition(0, 1);
                     break;
                 case ConsoleKey.B:
-                    webpage.DrawBasket(basket); //вызов корзины
+                    webpage.DrawBasket(basketList); //вызов корзины
                     break;
                 case ConsoleKey.Q:
                     webpage.MakePurchase(basket); //покупка
