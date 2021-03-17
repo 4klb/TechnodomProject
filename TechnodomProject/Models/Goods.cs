@@ -2,7 +2,7 @@
 
 namespace TechnodomProject.Models
 {
-    public class Item : Entity
+    public class Goods : Entity
     {
         public string Name { get; set; }
         public int Price { get; set; }

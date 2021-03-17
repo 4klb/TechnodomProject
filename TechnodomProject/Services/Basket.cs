@@ -7,13 +7,13 @@ namespace TechnodomProject.Services
 {
     public class Basket
     {
-        public List<Item> products = new List<Item>();
-        public void Add(Item productChoice) 
+        public List<Goods> products = new List<Goods>();
+        public void Add(Goods productChoice) 
         {
-            products = new List<Item>();
+            products = new List<Goods>();
             products.Add(productChoice);
         }
-        public void Delete(Item product) 
+        public void Delete(Goods product) 
         {
             products.Remove(product);
         }

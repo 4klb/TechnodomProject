@@ -5,15 +5,15 @@ using TechnodomProject.Models;
 
 namespace TechnodomProject.Data
 {
-    public class ItemsDataAccess : DbDataAccess<Item>
+    public class ItemsDataAccess : DbDataAccess<Goods>
     {
-        public override void Insert(Item entity) {} 
+        public override void Insert(Goods entity) {} 
 
         public void Raiting()
         {
 
         }
-        public ICollection<Item> SelectItems(int data)
+        public ICollection<Goods> SelectItems(int data)
         {
             string selectSqlScript = string.Empty;
 
@@ -33,11 +33,11 @@ namespace TechnodomProject.Data
 
                 var dataReader = command.ExecuteReader();
 
-                var products = new List<Item>();
+                var products = new List<Goods>();
 
                 while (dataReader.Read())
                 {
-                    products.Add(new Item
+                    products.Add(new Goods
                     {
                         Id = Guid.Parse(dataReader["Id"].ToString()),
                         Name = dataReader["Name"].ToString(),
@@ -55,7 +55,7 @@ namespace TechnodomProject.Data
             }
         }
 
-        public ICollection<Item> SelectItem(Item Id)
+        public ICollection<Goods> SelectItem(Goods Id)
         {
             string selectSqlScript = $"SELECT * FROM Items WHERE Id = {Id}";
 
@@ -64,13 +64,13 @@ namespace TechnodomProject.Data
                 command.CommandText = selectSqlScript;
                 command.Connection = connection;
 
-                var products = new List<Item>();
+                var products = new List<Goods>();
 
                 var dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    products.Add(new Item
+                    products.Add(new Goods
                     {
                         Id = Guid.Parse(dataReader["Id"].ToString()),
                         Name = dataReader["Name"].ToString(),

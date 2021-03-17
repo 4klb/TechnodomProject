@@ -10,9 +10,9 @@ namespace TechnodomProject.UI
 {
     public class Webpage
     {
-        public List<Item> ListId { get; set; }
+        public List<Goods> ListId { get; set; }
 
-        public List<Item> DrawPageGoods(int key)
+        public List<Goods> DrawPageGoods(int key)
         {
             var goodsData = new ItemsDataAccess();
 
@@ -21,7 +21,7 @@ namespace TechnodomProject.UI
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
 
-            ListId = new List<Item>();
+            ListId = new List<Goods>();
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -141,7 +141,7 @@ namespace TechnodomProject.UI
 
 
 
-        public void MakePurchase(Basket basket) // совершить покупку
+        public void MakePurchase(Basket basket) // совершить покупку F1
         {
             var user = new User();
             using (var userDataAccess = new UserDataAccess())
@@ -162,14 +162,12 @@ namespace TechnodomProject.UI
             var qiwiService = new QiwiService();
             var result = qiwiService.Pay(user, purchase); // платим за покупку
             
-            using(var itemsDataAccess = new ItemsDataAccess())
+            using(var purchaseDataAccess = new PurchaseDataAccess())
             {
                 if (result == Status.PAID.ToString()) //если покупка была успешной удаляем купленные продукты
                 {
-                    foreach(var product in purchase.products)
-                    {
-                        itemsDataAccess.DeleteItem(product.Id);
-                    }
+                    purchaseDataAccess.Insert(purchase);                   
+                    
                     Console.WriteLine("Покупка успешна завершена");
                 }
                 else 

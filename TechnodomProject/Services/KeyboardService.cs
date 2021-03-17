@@ -11,9 +11,9 @@ namespace TechnodomProject.Services
         public ConsoleKeyInfo CatchKey { get; set; }
 
         public int Key { get; set; }
-        public Item ProductChoice { get; set; }
+        public Goods ProductChoice { get; set; }
 
-        public List<Item> List { get; set; }
+        public List<Goods> List { get; set; }
 
 
         public int KeyboardListen()
