@@ -84,7 +84,7 @@ namespace TechnodomProject.Data
         public User SelectByPhone(string phone)
         {
             var user = new User();
-            string selectSqlScript = $"SELECT * FROM Users Where Phone = {phone}";
+            string selectSqlScript = $"SELECT * FROM Users Where Phone = '{phone}'";
 
             using (var command = factory.CreateCommand())
             {

@@ -109,7 +109,7 @@ namespace TechnodomProject.Services
                 case ConsoleKey.B:
                     webpage.DrawBasket(basket); //вызов корзины
                     break;
-                case ConsoleKey.F1:
+                case ConsoleKey.Q:
                     webpage.MakePurchase(basket); //покупка
                     break;
                 case ConsoleKey.Delete:

@@ -140,11 +140,11 @@ namespace TechnodomProject.UI
             Console.Clear();
             Console.WriteLine("Добавленно в корзину");
             Console.WriteLine("Вернуться к выбору страниц(нажмите <-/->)");
-            Console.WriteLine("Совершить покупку (нажмите F1)");
+            Console.WriteLine("Совершить покупку (нажмите Q)");
         }
 
 
-        public void MakePurchase(Basket basket) // совершить покупку F1
+        public void MakePurchase(Basket basket) // совершить покупку Q
         {
             var user = new User();
             using (var userDataAccess = new UserDataAccess())
