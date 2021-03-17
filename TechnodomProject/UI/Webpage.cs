@@ -61,7 +61,7 @@ namespace TechnodomProject.UI
         }
 
 
-        public void Menu()
+        public void StartPage()
         {
             var keyboardService = new KeyboardService();
             var goodsData = new ItemsDataAccess();
@@ -69,6 +69,7 @@ namespace TechnodomProject.UI
             Console.WriteLine("Стартовая страница");
             Console.SetCursorPosition(1, 1);
             Console.WriteLine("Популярные товары");
+
             Page();
             keyboardService.KeyboardListen();
             Console.Clear();
