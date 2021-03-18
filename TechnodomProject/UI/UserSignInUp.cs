@@ -14,6 +14,7 @@ namespace TechnodomProject.UI
         {
             var smsService = new SmsService();
 
+            var user = new User();
             string phone = IsCorrectPhone();
 
             int randomCode = 123456;//smsService.SendCode(phone);
@@ -27,18 +28,18 @@ namespace TechnodomProject.UI
                 using (var userDataAccess = new UserDataAccess())
                     if (userDataAccess.IsPhoneExists(phone))
                     {
-                        User = userDataAccess.SelectByPhone(phone);
-                        Console.WriteLine($"Welcome, {User.FullName}");
+                        user = userDataAccess.SelectByPhone(phone);
+                        User = user;
                         return true;
                     }
                     else
                     {
-                        Console.WriteLine("name: ");
-                        User.FullName = Console.ReadLine();
-                        Console.WriteLine("email: ");
-                        User.Email = IsCorrectEmail();
-                        User.Phone = phone;
-                        userDataAccess.Insert(User);
+                        Console.Write("Введите ваше имя: ");
+                        user.FullName = Console.ReadLine();
+                        user.Email = IsCorrectEmail();
+                        user.Phone = phone;
+                        userDataAccess.Insert(user);
+                        User = user;
                         return true;
                     }
             }
@@ -56,7 +57,7 @@ namespace TechnodomProject.UI
             string pattern = "[+]{1}[7]{1}[0-9]{3}[0-9]{3}[0-9]{4}";
             while (true)
             {
-                Console.WriteLine("Введите номер в формате | +7XXXXXXXXXX  |");
+                Console.Write("Введите номер в формате | +7XXXXXXXXXX  |: ");
                 phone = Console.ReadLine();
                 if (Regex.IsMatch(phone, pattern, RegexOptions.IgnoreCase))
                 {
@@ -76,7 +77,7 @@ namespace TechnodomProject.UI
             string email;
             while (true)
             {
-                Console.WriteLine("Введите email");
+                Console.Write("Введите email: ");
                 email = Console.ReadLine();
                 if (Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase))
                 {
@@ -84,7 +85,7 @@ namespace TechnodomProject.UI
                 }
                 else
                 {
-                    Console.WriteLine("Некорректно введен номер");
+                    Console.WriteLine("Некорректно введен email");
                 }
             }
 

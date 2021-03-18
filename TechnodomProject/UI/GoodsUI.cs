@@ -31,7 +31,7 @@ namespace TechnodomProject.UI
 
             if(variant == true)
             {
-                Console.WriteLine("\tДля добавления в корзине нажмите Tab");
+                Console.WriteLine("\tДля добавления в корзину нажмите Tab");
             }
         }
 
@@ -69,10 +69,11 @@ namespace TechnodomProject.UI
                     Start(user);
                 }
                 ShowGoods(products[inputkey - 1], inputkey,false);
+
+
                 Console.ReadKey();
             } while (true);
         }
-
 
 
         public void Start(User user)
@@ -144,7 +145,6 @@ namespace TechnodomProject.UI
                                 productsForPay.Add(products[0]);
                                 break;
                         }
-                        Console.ReadKey();
                         break;
                     case ConsoleKey.NumPad4:
                         ShowGoods(products[3], 4,true);
@@ -155,7 +155,6 @@ namespace TechnodomProject.UI
                                 productsForPay.Add(products[0]);
                                 break;
                         }
-                        Console.ReadKey();
                         break;
                     case ConsoleKey.RightArrow:
                         if (offsetCount < countOfGoods-4)
