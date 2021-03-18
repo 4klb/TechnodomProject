@@ -48,7 +48,7 @@ namespace TechnodomProject.Services
 
 
             int timer = 0;
-            int timeForPay = 10000;
+            int timeForPay = 100000;
             int oneSecond = 1000;
             while (true)
             {
@@ -63,7 +63,7 @@ namespace TechnodomProject.Services
                 }
                 if (timer == timeForPay)
                 {
-                    status = Status.PAID.ToString();//ВРЕНУТСЯ
+                    status = Status.REJECTED.ToString();
                 }
                 Console.WriteLine(timer);
                 Thread.Sleep(oneSecond * 5);
