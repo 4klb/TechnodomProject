@@ -23,7 +23,7 @@ namespace TechnodomProject.UI
                 PagesArray = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 } //забирать общее кол во с бд
             };
 
-            var products = goodsData.SelectItems(key); ;
+            var products = goodsData.SelectItems(key); 
 
             for (int i = 0; i < keyboard.PagesArray.Length; i++)
             {
@@ -69,7 +69,7 @@ namespace TechnodomProject.UI
             Console.WriteLine("Стартовая страница");
             Console.SetCursorPosition(1, 1);
             Console.WriteLine("Популярные товары");
-
+            var products = new Goods();
             Page();
             keyboardService.KeyboardListen();
             Console.Clear();
