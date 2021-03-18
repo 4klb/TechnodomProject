@@ -8,8 +8,9 @@ namespace TechnodomProject.UI
 {
     public class UserSignInUp
     {
+        public User User { get; set; }
 
-        public void Registration()
+        public bool Registration()
         {
             var smsService = new SmsService();
 
@@ -23,26 +24,28 @@ namespace TechnodomProject.UI
 
             if (randomCode == inputCode)
             {
-                User user = new User();
                 using (var userDataAccess = new UserDataAccess())
                     if (userDataAccess.IsPhoneExists(phone))
                     {
-                        user = userDataAccess.SelectByPhone(phone);
-                        Console.WriteLine($"Welcome, {user.FullName}");
+                        User = userDataAccess.SelectByPhone(phone);
+                        Console.WriteLine($"Welcome, {User.FullName}");
+                        return true;
                     }
                     else
                     {
                         Console.WriteLine("name: ");
-                        user.FullName = Console.ReadLine();
+                        User.FullName = Console.ReadLine();
                         Console.WriteLine("email: ");
-                        user.Email = IsCorrectEmail();
-                        user.Phone = phone;
-                        userDataAccess.Insert(user);
+                        User.Email = IsCorrectEmail();
+                        User.Phone = phone;
+                        userDataAccess.Insert(User);
+                        return true;
                     }
             }
             else
             {
                 Console.WriteLine("error");
+                return false;
             }
         }
 

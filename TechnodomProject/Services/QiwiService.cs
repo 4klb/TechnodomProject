@@ -12,11 +12,11 @@ namespace TechnodomProject.Services
 {
     public class QiwiService
     {
-        private string SecretKey { get; set; } = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6InNkbmNjaC0wMCIsInVzZXJfaWQiOiI3NzAxMzk4OTM5NiIsInNlY3JldCI6ImVjMDc5Y2RlNmYwNTMzZTMyNDM1MzFkMDQ0ZmJhNzM2NTc0ZWI2NWZkNDUzZmUzYWViNTFmMzUzNzI1MjNhNDQifX0=";
 
         public string Pay(User user, Purchase purchase)
         {
-            BillPaymentsClient client = BillPaymentsClientFactory.Create(secretKey: SecretKey);
+            BillPaymentsClient client = BillPaymentsClientFactory.Create(secretKey: "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6InNkbmNjaC0wMCIsInVzZXJfaWQiOiI3NzAxMzk4OTM5NiIsInNlY3JldCI6ImVjMDc5Y2RlNmYwNTMzZTMyNDM1MzFkMDQ0ZmJhNzM2NTc0ZWI2NWZkNDUzZmUzYWViNTFmMzUzNzI1MjNhNDQifX0=");
+
 
             BillResponse form = client.CreateBill(
                 info: new CreateBillInfo
@@ -32,10 +32,10 @@ namespace TechnodomProject.Services
                     Customer = new Customer
                     {
                         Email = user.Email,
-                        Account = user.Id.ToString(),
+                        Account = Guid.NewGuid().ToString(),
                         Phone = user.Phone
                     },
-                }
+                }            
             );
 
             BillResponse responseStatus = client.GetBillInfo(billId: form.BillId);
@@ -61,6 +61,10 @@ namespace TechnodomProject.Services
                 {
                     status = Status.WAITING.ToString();
                 }
+                if (timer == timeForPay)
+                {
+                    status = Status.REJECTED.ToString();
+                }
                 Thread.Sleep(oneSecond * 5);
                 timer += oneSecond * 5;
                 if (status == Status.PAID.ToString())
@@ -71,10 +75,6 @@ namespace TechnodomProject.Services
                 {
                     client.CancelBill(billId: form.BillId);
                     return status;
-                }
-                if(timer== timeForPay)
-                {
-                    status = Status.REJECTED.ToString();
                 }
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TechnodomProject.Data;
-using TechnodomProject.Models;
-using TechnodomProject.Services;
+﻿using TechnodomProject.Services;
 
 namespace TechnodomProject.UI
 {
@@ -11,19 +7,8 @@ namespace TechnodomProject.UI
         static void Main(string[] args)
         {
             InitConfiguration();
-            var webpage = new Webpage();
-
-            //тут регистрация 
-            webpage.StartPage();
-
-            //var itemsDataAccess = new ItemsDataAccess();
-            //var items = itemsDataAccess.SelectRaiting();
-            //foreach (var item in items)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
+            var menu = new MenuUI();
+            menu.Start();
         }
 
         private static void InitConfiguration()
