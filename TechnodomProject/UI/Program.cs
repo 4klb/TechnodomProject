@@ -1,4 +1,7 @@
-﻿using TechnodomProject.Services;
+﻿using System;
+using TechnodomProject.Data;
+using TechnodomProject.Models;
+using TechnodomProject.Services;
 
 namespace TechnodomProject.UI
 {
@@ -9,6 +12,8 @@ namespace TechnodomProject.UI
             InitConfiguration();
             var menu = new MenuUI();
             menu.Start();
+
+
         }
 
         private static void InitConfiguration()

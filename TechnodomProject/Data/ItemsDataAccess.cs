@@ -68,6 +68,30 @@ namespace TechnodomProject.Data
         }
 
 
+        public int GetRaiting(Goods goods)
+        {
+            string selectSqlScript = $"select avg(r.Raiting) as raiting from goods g join raiting r on g.Id = r.GoodsId where r.GoodsId = '{goods.Id}' group by r.GoodsId ";
+
+            int raiting = 0;
+
+            using (var command = factory.CreateCommand())
+            {
+                command.CommandText = selectSqlScript;
+                command.Connection = connection;
+
+                using (var dataReader = command.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        raiting = int.Parse(dataReader["raiting"].ToString());
+                    }
+                }
+
+                return raiting;
+            }
+        }
+
+
 
         public ICollection<Goods> SelectPopularGoodsId(int count)
         {

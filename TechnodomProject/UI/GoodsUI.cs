@@ -10,6 +10,10 @@ namespace TechnodomProject.UI
 {
     public class GoodsUI
     {
+        /// <summary>
+        /// выводит товары из списка на экран
+        /// </summary>
+        /// <param name="goods"></param>
         public void PrintGoods(List<Goods> goods)
         {
             int i = 1;
@@ -17,11 +21,17 @@ namespace TechnodomProject.UI
             {
                 Console.WriteLine($"{i++}. {good.Category.Name} {good.Manufacturer.Name} {good.Name}");
                 Console.WriteLine($"\tНаименование: {good.Name}\n\tЦена: {good.Price} kzt\n\tДата публикации: {good.Publicitydate}");
-                Console.WriteLine($"\tПроизводитель: {good.Manufacturer.Name} {good.Manufacturer.Country}\n");
+                Console.WriteLine($"\tПроизводитель: {good.Manufacturer.Name} {good.Manufacturer.Country} {good.Raiting}\n");
             }
         }
 
 
+        /// <summary>
+        /// выводит товар на экран
+        /// </summary>
+        /// <param name="goods"></param>
+        /// <param name="index"></param>
+        /// <param name="variant"></param>
         public void ShowGoods(Goods goods, int index, bool variant) // выводит выбранные товар
         {
             Console.Clear();
@@ -37,6 +47,10 @@ namespace TechnodomProject.UI
 
 
 
+        /// <summary>
+        /// выводит самые популярные товары
+        /// </summary>
+        /// <param name="user"></param>
         public void ShowPopularGoods(User user)
         {
             List<Goods> products = new List<Goods>();
@@ -49,6 +63,7 @@ namespace TechnodomProject.UI
                 {
                     product.Category = itemsDataAccess.GetCategory(product);
                     product.Manufacturer = itemsDataAccess.GetManufacturer(product);
+                    product.Raiting = itemsDataAccess.GetRaiting(product);
                 }
             }
 
@@ -74,6 +89,8 @@ namespace TechnodomProject.UI
                 Console.ReadKey();
             } while (true);
         }
+
+
 
 
         public void Start(User user)
@@ -181,9 +198,10 @@ namespace TechnodomProject.UI
                             if(qiwiService.Pay(user, purchase) == Status.PAID.ToString())
                             {
                                 Console.WriteLine("Оплата завершена!");
+                                Console.Clear();
                                 using(var purchaceDataAccess = new PurchaseDataAccess())
                                 {
-                                    purchaceDataAccess.Insert(purchase);
+                                    purchaceDataAccess.Insert(purchase); 
                                     using(var basketDataAccess = new BasketDataAccess())
                                     {
                                         foreach(var good in productsForPay)
@@ -195,9 +213,9 @@ namespace TechnodomProject.UI
                                     }
                                     foreach(var payProduct in productsForPay)
                                     {
-                                        purchaceDataAccess.UpdateGoodsAmount(payProduct);
-                                        productsForPay.Remove(payProduct);
+                                        purchaceDataAccess.UpdateGoodsAmount(payProduct); 
                                     }
+                                    productsForPay.Clear(); // очищаем корзину
                                 }
                             }
                             else

@@ -10,6 +10,10 @@ namespace TechnodomProject.UI
     {
         public User User { get; set; }
 
+        /// <summary>
+        /// метод для регистрации пользователя
+        /// </summary>
+        /// <returns>bool</returns>
         public bool Registration()
         {
             var smsService = new SmsService();
@@ -17,7 +21,7 @@ namespace TechnodomProject.UI
             var user = new User();
             string phone = IsCorrectPhone();
 
-            int randomCode = 123456;//smsService.SendCode(phone);
+            int randomCode = smsService.SendCode(phone);
             Console.WriteLine("На ваш номер был выслан код");
             Console.Write("Введите код для подверждения: ");
 
@@ -50,6 +54,11 @@ namespace TechnodomProject.UI
             }
         }
 
+
+        /// <summary>
+        /// метод для проверки корректности номера телефона
+        /// </summary>
+        /// <returns>string</returns>
         string IsCorrectPhone()
         {
             string phone;
@@ -70,6 +79,12 @@ namespace TechnodomProject.UI
             }
         }
 
+
+
+        /// <summary>
+        /// метод для проверки корректности введенного email
+        /// </summary>
+        /// <returns>string</returns>
         string IsCorrectEmail()
         {
             string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";

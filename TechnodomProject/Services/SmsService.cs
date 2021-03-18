@@ -16,6 +16,12 @@ namespace TechnodomProject.Services
             TwilioClient.Init(accountSid, authToken);
         }
 
+        /// <summary>
+        /// метод отправки кода на телефон
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns>int</returns>
+        
         public int SendCode(string phone)
         {
             Random random = new Random();

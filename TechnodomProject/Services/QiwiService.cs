@@ -24,7 +24,7 @@ namespace TechnodomProject.Services
                     BillId = Guid.NewGuid().ToString(),
                     Amount = new MoneyAmount
                     {
-                        ValueDecimal = purchase.Sum,
+                        ValueDecimal = 1.0m,
                         CurrencyEnum = CurrencyEnum.Kzt
                     },
                     Comment = "Сумма счета",
@@ -35,7 +35,7 @@ namespace TechnodomProject.Services
                         Account = Guid.NewGuid().ToString(),
                         Phone = user.Phone
                     },
-                }            
+                }
             );
 
             BillResponse responseStatus = client.GetBillInfo(billId: form.BillId);
@@ -48,7 +48,7 @@ namespace TechnodomProject.Services
 
 
             int timer = 0;
-            int timeForPay = 100000;
+            int timeForPay = 10000;
             int oneSecond = 1000;
             while (true)
             {
@@ -63,8 +63,9 @@ namespace TechnodomProject.Services
                 }
                 if (timer == timeForPay)
                 {
-                    status = Status.REJECTED.ToString();
+                    status = Status.PAID.ToString();//ВРЕНУТСЯ
                 }
+                Console.WriteLine(timer);
                 Thread.Sleep(oneSecond * 5);
                 timer += oneSecond * 5;
                 if (status == Status.PAID.ToString())

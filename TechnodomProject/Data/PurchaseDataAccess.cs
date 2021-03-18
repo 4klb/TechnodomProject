@@ -5,6 +5,10 @@ namespace TechnodomProject.Data
 {
     public class PurchaseDataAccess : DbDataAccess<Purchase>
     {
+        /// <summary>
+        /// метод добавления данных в БД
+        /// </summary>
+        /// <param name="purchase"></param>
         public override void Insert(Purchase purchase)
         {
             string insertSqlScript = "insert into Purchase values (@Id,@Sum, @Date,@UserId)";
@@ -55,7 +59,13 @@ namespace TechnodomProject.Data
             }
         }
 
-        public void UpdateGoodsAmount(Goods goods ) // после покупки уменьшаем количество купленного товара
+
+        /// <summary>
+        /// метод который уменьшаем количество купленного товара в БД
+        /// </summary>
+        /// <param name="goods"></param>
+        
+        public void UpdateGoodsAmount(Goods goods ) 
         {
             using (var command = factory.CreateCommand())
             {
