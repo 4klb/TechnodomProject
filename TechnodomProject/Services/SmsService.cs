@@ -8,8 +8,8 @@ namespace TechnodomProject.Services
 {
     public class SmsService
     {
-        private string accountSid = "AC03798a1882921c7f150d85a1f9967321";
-        private string authToken = "9401c6e36f47d4613c0d4f35733de6f2";
+        private string accountSid = "*********";
+        private string authToken = "***************";
 
         public SmsService()
         {
