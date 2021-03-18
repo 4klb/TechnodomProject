@@ -15,7 +15,7 @@ namespace TechnodomProject.Services
 
         public List<Guid> List { get; set; }
 
-
+        public List<Guid> BasketList { get; set; }
         public int KeyboardListen()
         {
             string status = string.Empty;
@@ -99,11 +99,10 @@ namespace TechnodomProject.Services
                     }
                     break;
                 case ConsoleKey.Tab:           //добавление в корзину                  
-                    basket.Add(goodsData.SelectById(ProductChoice));
+                    BasketList = basket.Add(ProductChoice);
                     break;
                 case ConsoleKey.Escape:        //вызов набора страниц
                     webpage.Page();
-                    keyboardService.KeyboardListen();
                     break;
                 case ConsoleKey.RightArrow:
                     Console.SetCursorPosition(0, 1);
@@ -112,13 +111,13 @@ namespace TechnodomProject.Services
                     Console.SetCursorPosition(0, 1);
                     break;
                 case ConsoleKey.B:
-                    webpage.DrawBasket(basket); //вызов корзины
+                    webpage.DrawBasket(BasketList); //вызов корзины
                     break;
                 case ConsoleKey.Q:
                     webpage.MakePurchase(basket); //покупка
                     break;
                 case ConsoleKey.Delete:
-                    basket.Delete(goodsData.SelectById(ProductChoice)); //удаление
+                    //basket.Delete(goodsData.SelectById(ProductChoice)); //удаление
                     break;
                 default:
                     break;

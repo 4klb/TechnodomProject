@@ -48,7 +48,6 @@ namespace TechnodomProject.UI
 
                     foreach (var id in products)
                     {
-                        //Guid value = id.Id;
                         ListId.Add(id.Id);
                     }
                 }
@@ -94,26 +93,33 @@ namespace TechnodomProject.UI
             return null;
         }
 
- 
-
-
-        public void DrawBasket(Basket basket)
+        public void DrawBasket(List<Guid> basketList) //нужно узнать почему лист перезаписывается  
         { 
             Console.Clear();
-
-            foreach(var value in basket.products)
-            {
-                Console.WriteLine(value.Name);
-                Console.WriteLine(value.Price);
-                Console.WriteLine(value.Publicitydate);
-            }
-            
+            var itemData = new ItemsDataAccess();
             Console.SetCursorPosition(50, 0);
             Console.WriteLine("Корзина");
             Console.SetCursorPosition(2, 4);
+            Console.WriteLine("Добавлен(-ы) продукт(-ы)");
+
+            foreach(var value in basketList)
+            {
+                var result = itemData.SelectById(value);
+
+                foreach (var items in result)
+                {
+                    Console.SetCursorPosition(2, 5);
+                    Console.WriteLine(items.Name);
+                }
+            }
+             
+            Console.SetCursorPosition(60, 7);
             Console.WriteLine("Чтобы вернуться к выбору страниц нажмите Escape");
-            Console.WriteLine("Купить (нажмите Ctrl)");
-            Console.SetCursorPosition(2, 8);
+            Console.SetCursorPosition(60, 10);
+            Console.WriteLine("Показать корзину (нажмите B)");
+            Console.SetCursorPosition(60, 10);
+            Console.WriteLine("Купить (нажмите Q)");
+            Console.SetCursorPosition(60, 10);
             Console.WriteLine("Нажмите любую клавишу чтобы перейти к Qiwi-касса");
             Console.ReadKey();
         }
@@ -138,8 +144,8 @@ namespace TechnodomProject.UI
         public void DrawAddToBasket()
         {
             Console.Clear();
-            Console.WriteLine("Добавленно в корзину");
-            Console.WriteLine("Вернуться к выбору страниц(нажмите <-/->)");
+            Console.WriteLine("Добавлено в корзину");
+            Console.WriteLine("Вернуться к выбору страниц(нажмите Escape)");
             Console.WriteLine("Совершить покупку (нажмите Q)");
         }
 
